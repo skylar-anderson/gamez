@@ -197,7 +197,7 @@ export default function MastermindGame() {
   }
 
   return (
-    <div className="flex flex-col gap-8" onClick={closePopover}>
+    <div className="flex flex-col gap-8 pb-20" onClick={closePopover}>
       <div className="w-full">
         <div className="border-zinc-800 border p-6 rounded-lg shadow-md max-w-2xl mx-auto">
           {/* Game board */}
@@ -257,17 +257,7 @@ export default function MastermindGame() {
                     </div>
                   ))}
                 </div>
-                <button
-                  onClick={submitGuess}
-                  disabled={gameState.currentAttempt.includes(null)}
-                  className={`px-3 py-2 rounded ${
-                    gameState.currentAttempt.includes(null)
-                      ? "bg-gray-300 text-gray-500"
-                      : "bg-blue-600 text-white hover:bg-blue-700"
-                  }`}
-                >
-                  Submit
-                </button>
+                <div className="w-20 h-12"></div>
               </div>
             )}
 
@@ -336,6 +326,25 @@ export default function MastermindGame() {
           </div>
         )}
       </div>
+      
+      {/* Fixed submit button for mobile */}
+      {gameState.status === "playing" && (
+        <div className="fixed bottom-0 left-0 right-0 p-4 bg-zinc-900 border-t border-zinc-800 flex justify-center">
+          <div className="max-w-2xl w-full">
+            <button
+              onClick={submitGuess}
+              disabled={gameState.currentAttempt.includes(null)}
+              className={`w-full py-3 rounded-lg ${
+                gameState.currentAttempt.includes(null)
+                  ? "bg-gray-300 text-gray-500"
+                  : "bg-blue-600 text-white hover:bg-blue-700"
+              }`}
+            >
+              Submit
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 } 
