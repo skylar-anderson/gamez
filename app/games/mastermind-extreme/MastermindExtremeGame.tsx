@@ -466,7 +466,7 @@ export default function MastermindExtremeGame() {
           <div className="mt-6 max-w-3xl mx-auto flex justify-between">
             <div className="flex space-x-2">
               <button
-                onClick={resetGame}
+                onClick={() => resetGame()}
                 className="px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 transition-colors"
               >
                 Restart Game
