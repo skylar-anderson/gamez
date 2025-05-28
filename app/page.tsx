@@ -11,6 +11,11 @@ export default function Home() {
           description="A code-breaking game where you try to guess the pattern of colored pegs selected by the computer."
           href="/games/mastermind"
         />
+        <GameCard 
+          title="Mastermind Extreme" 
+          description="A challenging variant with more pegs, colors, difficulty levels, and a scoring system. Test your code-breaking skills to the limit!"
+          href="/games/mastermind-extreme"
+        />
         {/* Add more game cards here as you implement them */}
       </div>
     </div>
