@@ -170,7 +170,7 @@ export default function MastermindExtremeGame() {
     if (gameState.status !== "playing" || gameState.hintsUsed >= gameState.maxHints) return;
     
     // Find a position that hasn't been hinted yet
-    let availablePositions = [];
+    const availablePositions = [];
     for (let i = 0; i < gameState.secretCode.length; i++) {
       if (showHint !== i) {
         availablePositions.push(i);
@@ -231,7 +231,7 @@ export default function MastermindExtremeGame() {
     
     // Close popover after submitting
     setActivePopover(null);
-  }, [gameState.currentAttempt, gameState.secretCode, gameState.status, gameState.maxAttempts]);
+  }, [gameState.currentAttempt, gameState.secretCode, gameState.status]);
 
   // Generate feedback for a guess
   function generateFeedback(guess: string[], code: string[]): Feedback {
