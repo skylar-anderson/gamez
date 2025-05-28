@@ -172,7 +172,7 @@ export default function MastermindGame() {
   // Color picker popover component
   function ColorPickerPopover({ pegIndex }: { pegIndex: number }) {
     return (
-      <div className="absolute z-10 mt-2 bg-white rounded-lg shadow-lg p-4 border" style={{ transform: "translateX(-25%)", minWidth: "120px" }}>
+      <div className="absolute z-10 mt-2 bg-white rounded-lg shadow-lg p-4 border" style={{ transform: "translateX(-25%)", minWidth: "120px", maxWidth: "95vw" }}>
         <div className="grid grid-cols-3 gap-3">
           {COLORS.map(color => (
             <button
@@ -199,22 +199,22 @@ export default function MastermindGame() {
   return (
     <div className="flex flex-col gap-8 pb-20" onClick={closePopover}>
       <div className="w-full">
-        <div className="border-zinc-800 border p-6 rounded-lg shadow-md max-w-2xl mx-auto">
+        <div className="border-zinc-800 border p-4 md:p-6 rounded-lg shadow-md max-w-2xl mx-auto overflow-x-auto">
           {/* Game board */}
           <div className="space-y-4">
             {/* Previous attempts */}
             {gameState.attempts.map((attempt, rowIndex) => (
-              <div key={rowIndex} className="flex items-center space-x-4">
-                <div className="flex-1 flex space-x-2">
+              <div key={rowIndex} className="flex items-center space-x-2 md:space-x-4">
+                <div className="flex-1 flex space-x-1 md:space-x-2">
                   {attempt.map((color, pegIndex) => (
                     <div 
                       key={pegIndex}
-                      className="w-12 h-12 rounded-full border-2 border-gray-300"
+                      className="w-8 h-8 md:w-12 md:h-12 rounded-full border-2 border-gray-300"
                       style={{ backgroundColor: color || 'transparent' }}
                     />
                   ))}
                 </div>
-                <div className="flex flex-wrap w-20 h-12 gap-1 justify-center items-center">
+                <div className="flex flex-wrap w-16 md:w-20 h-12 gap-1 justify-center items-center">
                   {/* Sort feedback to show red first, then white, to avoid revealing positions */}
                   {[...gameState.feedback[rowIndex]]
                     .sort((a, b) => {
@@ -242,12 +242,12 @@ export default function MastermindGame() {
 
             {/* Current attempt */}
             {gameState.status === "playing" && (
-              <div className="flex items-center space-x-4" onClick={(e) => e.stopPropagation()}>
-                <div className="flex-1 flex space-x-2">
+              <div className="flex items-center space-x-2 md:space-x-4" onClick={(e) => e.stopPropagation()}>
+                <div className="flex-1 flex space-x-1 md:space-x-2">
                   {gameState.currentAttempt.map((color, pegIndex) => (
                     <div key={pegIndex} className="relative">
                       <button 
-                        className="w-12 h-12 rounded-full border-2 border-zinc-700 focus:outline-none focus:ring-2 focus:ring-blue-500 hover:border-blue-400"
+                        className="w-8 h-8 md:w-12 md:h-12 rounded-full border-2 border-zinc-700 focus:outline-none focus:ring-2 focus:ring-blue-500 hover:border-blue-400"
                         style={{ backgroundColor: color || 'rgba(255, 255, 255, .2)' }}
                         onClick={() => togglePopover(pegIndex)}
                       />
@@ -257,7 +257,7 @@ export default function MastermindGame() {
                     </div>
                   ))}
                 </div>
-                <div className="w-20 h-12"></div>
+                <div className="w-16 md:w-20 h-12"></div>
               </div>
             )}
 
@@ -266,16 +266,16 @@ export default function MastermindGame() {
               Array.from(
                 { length: gameState.maxAttempts - gameState.attempts.length - 1 },
                 (_, i) => (
-                  <div key={`empty-${i}`} className="flex items-center space-x-4">
-                    <div className="flex-1 flex space-x-2">
+                  <div key={`empty-${i}`} className="flex items-center space-x-2 md:space-x-4">
+                    <div className="flex-1 flex space-x-1 md:space-x-2">
                       {Array(4).fill(null).map((_, pegIndex) => (
                         <div 
                           key={pegIndex}
-                          className="w-12 h-12 rounded-full border-2 border-dashed border-gray-200"
+                          className="w-8 h-8 md:w-12 md:h-12 rounded-full border-2 border-dashed border-gray-200"
                         />
                       ))}
                     </div>
-                    <div className="w-20 h-12"></div>
+                    <div className="w-16 md:w-20 h-12"></div>
                   </div>
                 )
               )}
