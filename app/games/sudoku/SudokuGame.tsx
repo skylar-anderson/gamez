@@ -210,6 +210,7 @@ export default function SudokuGame() {
     setGameState(prev => ({
       ...prev,
       selectedCell: { row, col },
+      selectedNumber: prev.grid[row][col].value,
     }));
   }, [gameState.status]);
 
