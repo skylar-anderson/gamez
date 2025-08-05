@@ -45,6 +45,11 @@ export default function RootLayout({
                     Mastermind
                   </Link>
                 </li>
+                <li>
+                  <Link href="/games/sudoku" className="hover:text-blue-600 transition-colors">
+                    Sudoku
+                  </Link>
+                </li>
               </ul>
             </nav>
           </div>

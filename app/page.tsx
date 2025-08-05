@@ -11,6 +11,11 @@ export default function Home() {
           description="A code-breaking game where you try to guess the pattern of colored pegs selected by the computer."
           href="/games/mastermind"
         />
+        <GameCard 
+          title="Sudoku" 
+          description="Fill the 9×9 grid with numbers 1-9. Each row, column, and 3×3 box must contain all digits exactly once."
+          href="/games/sudoku"
+        />
         {/* Add more game cards here as you implement them */}
       </div>
     </div>
