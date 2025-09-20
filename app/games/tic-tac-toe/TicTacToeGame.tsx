@@ -59,6 +59,16 @@ export default function TicTacToeGame() {
     return `Player ${currentPlayer}&apos;s turn`;
   };
 
+  const getCellClassName = (cell: Player) => {
+    const baseClasses = 'w-20 h-20 border-2 border-gray-300 rounded-lg text-3xl font-bold transition-all duration-200';
+    const playerColor = cell === 'X' ? 'text-blue-600' : cell === 'O' ? 'text-red-600' : '';
+    const interactionClasses = winner 
+      ? 'cursor-not-allowed' 
+      : 'cursor-pointer hover:scale-105 hover:bg-gray-100';
+    
+    return `${baseClasses} ${playerColor} ${interactionClasses}`;
+  };
+
   return (
     <div className="flex flex-col items-center justify-center min-h-[600px] p-8">
       <h1 className="text-4xl font-bold mb-8">Tic Tac Toe</h1>
@@ -73,12 +83,7 @@ export default function TicTacToeGame() {
         {board.map((cell, index) => (
           <button
             key={index}
-            className={`
-              w-20 h-20 border-2 border-gray-300 rounded-lg text-3xl font-bold
-              transition-all duration-200 hover:bg-gray-100
-              ${cell === 'X' ? 'text-blue-600' : 'text-red-600'}
-              ${winner ? 'cursor-not-allowed' : 'cursor-pointer hover:scale-105'}
-            `}
+            className={getCellClassName(cell)}
             onClick={() => handleCellClick(index)}
             disabled={!!winner}
           >
