@@ -11,6 +11,11 @@ export default function Home() {
           description="A code-breaking game where you try to guess the pattern of colored pegs selected by the computer."
           href="/games/mastermind"
         />
+        <GameCard 
+          title="Battleship" 
+          description="Command your fleet in an epic naval warfare! Hunt down enemy vessels lurking in treacherous waters while protecting your own armada from devastating attacks."
+          href="/games/battleship"
+        />
         {/* Add more game cards here as you implement them */}
       </div>
     </div>
