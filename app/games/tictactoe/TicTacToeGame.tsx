@@ -14,45 +14,45 @@ interface GameState {
   winner: Player | null;
 }
 
+// Initialize a new game
+function initializeGame(): GameState {
+  return {
+    board: Array(9).fill(null),
+    currentPlayer: "X",
+    status: "playing",
+    winner: null,
+  };
+}
+
+// Check for a winner
+function checkWinner(board: Cell[]): Player | null {
+  const winningCombinations = [
+    [0, 1, 2], // Top row
+    [3, 4, 5], // Middle row
+    [6, 7, 8], // Bottom row
+    [0, 3, 6], // Left column
+    [1, 4, 7], // Middle column
+    [2, 5, 8], // Right column
+    [0, 4, 8], // Diagonal top-left to bottom-right
+    [2, 4, 6], // Diagonal top-right to bottom-left
+  ];
+
+  for (const [a, b, c] of winningCombinations) {
+    if (board[a] && board[a] === board[b] && board[a] === board[c]) {
+      return board[a];
+    }
+  }
+
+  return null;
+}
+
 export default function TicTacToeGame() {
   const [gameState, setGameState] = useState<GameState>(() => initializeGame());
-
-  // Initialize a new game
-  function initializeGame(): GameState {
-    return {
-      board: Array(9).fill(null),
-      currentPlayer: "X",
-      status: "playing",
-      winner: null,
-    };
-  }
 
   // Reset the game
   const resetGame = useCallback(() => {
     setGameState(initializeGame());
   }, []);
-
-  // Check for a winner
-  function checkWinner(board: Cell[]): Player | null {
-    const winningCombinations = [
-      [0, 1, 2], // Top row
-      [3, 4, 5], // Middle row
-      [6, 7, 8], // Bottom row
-      [0, 3, 6], // Left column
-      [1, 4, 7], // Middle column
-      [2, 5, 8], // Right column
-      [0, 4, 8], // Diagonal top-left to bottom-right
-      [2, 4, 6], // Diagonal top-right to bottom-left
-    ];
-
-    for (const [a, b, c] of winningCombinations) {
-      if (board[a] && board[a] === board[b] && board[a] === board[c]) {
-        return board[a];
-      }
-    }
-
-    return null;
-  }
 
   // Handle cell click
   const handleCellClick = useCallback((index: number) => {
