@@ -56,11 +56,11 @@ export default function TicTacToeGame() {
 
   // Handle cell click
   const handleCellClick = useCallback((index: number) => {
-    if (gameState.status !== "playing" || gameState.board[index] !== null) {
-      return; // Don't allow moves on occupied cells or when game is over
-    }
-
     setGameState(prev => {
+      if (prev.status !== "playing" || prev.board[index] !== null) {
+        return prev; // Don't allow moves on occupied cells or when game is over
+      }
+
       const newBoard = [...prev.board];
       newBoard[index] = prev.currentPlayer;
 
@@ -84,7 +84,7 @@ export default function TicTacToeGame() {
         winner: winner,
       };
     });
-  }, [gameState.status, gameState.board]);
+  }, []);
 
   return (
     <div className="flex flex-col gap-8">
