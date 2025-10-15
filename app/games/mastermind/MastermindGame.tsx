@@ -5,6 +5,41 @@ import { useState, useCallback } from "react";
 // Color options for the game
 const COLORS = ["red", "green", "blue", "yellow", "purple", "orange"];
 
+// Difficulty levels
+type Difficulty = "easy" | "medium" | "hard";
+
+interface DifficultyConfig {
+  codeLength: number;
+  maxAttempts: number;
+  colorCount: number;
+  label: string;
+  description: string;
+}
+
+const DIFFICULTY_CONFIGS: Record<Difficulty, DifficultyConfig> = {
+  easy: {
+    codeLength: 4,
+    maxAttempts: 12,
+    colorCount: 4,
+    label: "Easy",
+    description: "4 colors, 4 pegs, 12 attempts"
+  },
+  medium: {
+    codeLength: 4,
+    maxAttempts: 10,
+    colorCount: 6,
+    label: "Medium",
+    description: "6 colors, 4 pegs, 10 attempts"
+  },
+  hard: {
+    codeLength: 5,
+    maxAttempts: 10,
+    colorCount: 6,
+    label: "Hard",
+    description: "6 colors, 5 pegs, 10 attempts"
+  }
+};
+
 // Game status types
 type GameStatus = "playing" | "won" | "lost";
 
@@ -21,34 +56,53 @@ interface GameState {
   currentPegIndex: number;
   maxAttempts: number;
   status: GameStatus;
+  difficulty: Difficulty;
+  codeLength: number;
+  availableColors: string[];
 }
 
 export default function MastermindGame() {
-  const [gameState, setGameState] = useState<GameState>(() => initializeGame());
+  const [difficulty, setDifficulty] = useState<Difficulty>("medium");
+  const [gameState, setGameState] = useState<GameState>(() => initializeGame(difficulty));
   const [activePopover, setActivePopover] = useState<number | null>(null);
+  const [showDifficultySelect, setShowDifficultySelect] = useState(true);
 
   // Initialize a new game
-  function initializeGame(): GameState {
-    // Generate a random code of 4 colors
-    const secretCode = Array.from({ length: 4 }, () => 
-      COLORS[Math.floor(Math.random() * COLORS.length)]
+  function initializeGame(diff: Difficulty): GameState {
+    const config = DIFFICULTY_CONFIGS[diff];
+    const availableColors = COLORS.slice(0, config.colorCount);
+    
+    // Generate a random code
+    const secretCode = Array.from({ length: config.codeLength }, () => 
+      availableColors[Math.floor(Math.random() * availableColors.length)]
     );
 
     return {
       secretCode,
       attempts: [],
       feedback: [],
-      currentAttempt: Array(4).fill(null),
+      currentAttempt: Array(config.codeLength).fill(null),
       currentPegIndex: 0,
-      maxAttempts: 10,
+      maxAttempts: config.maxAttempts,
       status: "playing",
+      difficulty: diff,
+      codeLength: config.codeLength,
+      availableColors,
     };
   }
 
   // Reset the game
   const resetGame = useCallback(() => {
-    setGameState(initializeGame());
+    setGameState(initializeGame(difficulty));
     setActivePopover(null);
+  }, [difficulty]);
+
+  // Change difficulty and start new game
+  const changeDifficulty = useCallback((newDifficulty: Difficulty) => {
+    setDifficulty(newDifficulty);
+    setGameState(initializeGame(newDifficulty));
+    setActivePopover(null);
+    setShowDifficultySelect(false);
   }, []);
 
   // Set a peg color in the current attempt
