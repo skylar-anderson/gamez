@@ -1,6 +1,6 @@
 "use client";
 
-import TicTacToeGame from "./TicTacToeGame"
+import TicTacToeGame from "./TicTacToeGame";
 
 export default function TicTacToePage() {
   return (
