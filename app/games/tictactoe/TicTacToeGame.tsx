@@ -100,10 +100,10 @@ export default function TicTacToeGame() {
                 onClick={() => handleCellClick(index)}
                 className={`w-24 h-24 border-2 border-zinc-700 rounded-lg text-4xl font-bold transition-colors ${
                   cell === null && gameState.status === "playing"
-                    ? "hover:border-blue-400 hover:bg-zinc-800"
+                    ? "hover:border-purple-400 hover:bg-zinc-800"
                     : ""
                 } ${
-                  cell === "X" ? "text-blue-500" : cell === "O" ? "text-red-500" : ""
+                  cell === "X" ? "text-purple-500" : cell === "O" ? "text-orange-500" : ""
                 }`}
                 disabled={gameState.status !== "playing" || cell !== null}
               >
@@ -116,14 +116,14 @@ export default function TicTacToeGame() {
           <div className="text-center">
             {gameState.status === "playing" && (
               <p className="text-xl mb-4">
-                Current Player: <span className={gameState.currentPlayer === "X" ? "text-blue-500 font-bold" : "text-red-500 font-bold"}>{gameState.currentPlayer}</span>
+                Current Player: <span className={gameState.currentPlayer === "X" ? "text-purple-500 font-bold" : "text-orange-500 font-bold"}>{gameState.currentPlayer}</span>
               </p>
             )}
             
             {gameState.status === "won" && (
               <div className="bg-green-800 border-green-700 border text-white p-4 rounded-lg mb-4">
                 <p className="text-xl font-bold">
-                  Player <span className={gameState.winner === "X" ? "text-blue-300" : "text-red-300"}>{gameState.winner}</span> wins! 🎉
+                  Player <span className={gameState.winner === "X" ? "text-purple-300" : "text-orange-300"}>{gameState.winner}</span> wins! 🎉
                 </p>
               </div>
             )}
