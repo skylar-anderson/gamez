@@ -6,8 +6,13 @@ export default function Home() {
       <h1 className="text-3xl font-bold mb-8">Game Collection</h1>
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <GameCard 
-          title="Mastermind" 
+        <GameCard
+          title="Tic Tac Toe"
+          description="Classic two-player game. Take turns placing X and O on the grid. Get three in a row to win!"
+          href="/games/tictactoe"
+        />
+        <GameCard
+          title="Mastermind"
           description="A code-breaking game where you try to guess the pattern of colored pegs selected by the computer."
           href="/games/mastermind"
         />
