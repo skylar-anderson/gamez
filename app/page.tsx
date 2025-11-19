@@ -16,6 +16,11 @@ export default function Home() {
           description="Classic tic-tac-toe game. Take turns placing X and O to get three in a row!"
           href="/games/tic-tac-toe"
         />
+        <GameCard 
+          title="Connect 4" 
+          description="Drop colored discs and be the first to get four in a row horizontally, vertically, or diagonally!"
+          href="/games/connect-4"
+        />
         {/* Add more game cards here as you implement them */}
       </div>
     </div>
