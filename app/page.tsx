@@ -11,6 +11,11 @@ export default function Home() {
           description="A code-breaking game where you try to guess the pattern of colored pegs selected by the computer."
           href="/games/mastermind"
         />
+        <GameCard 
+          title="Battleship" 
+          description="A classic two-player naval combat game. Take turns placing ships and attacking to sink your opponent's fleet!"
+          href="/games/battleship"
+        />
         {/* Add more game cards here as you implement them */}
       </div>
     </div>

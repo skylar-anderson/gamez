@@ -45,6 +45,11 @@ export default function RootLayout({
                     Mastermind
                   </Link>
                 </li>
+                <li>
+                  <Link href="/games/battleship" className="hover:text-blue-600 transition-colors">
+                    Battleship
+                  </Link>
+                </li>
               </ul>
             </nav>
           </div>
