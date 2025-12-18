@@ -63,11 +63,11 @@ export default function TicTacToeGame() {
 
   // Handle cell click
   const handleCellClick = useCallback((index: number) => {
-    if (gameState.status !== "playing" || gameState.board[index] !== null) {
-      return;
-    }
-
     setGameState((prev) => {
+      if (prev.status !== "playing" || prev.board[index] !== null) {
+        return prev;
+      }
+
       const newBoard = [...prev.board];
       newBoard[index] = prev.currentPlayer;
 
@@ -99,7 +99,7 @@ export default function TicTacToeGame() {
         currentPlayer: prev.currentPlayer === "X" ? "O" : "X",
       };
     });
-  }, [gameState.status, gameState.board]);
+  }, []);
 
   // Render a cell
   function Cell({ index }: { index: number }) {
