@@ -60,11 +60,11 @@ export default function TicTacToeGame() {
 
   // Handle square click
   const handleSquareClick = useCallback((index: number) => {
-    if (gameState.status !== "playing" || gameState.board[index]) {
-      return; // Don't do anything if the game is over or the square is already filled
-    }
-
     setGameState(prev => {
+      if (prev.status !== "playing" || prev.board[index]) {
+        return prev; // Don't do anything if the game is over or the square is already filled
+      }
+
       const newBoard = [...prev.board];
       newBoard[index] = prev.currentPlayer;
 
@@ -88,7 +88,7 @@ export default function TicTacToeGame() {
         winningLine: line,
       };
     });
-  }, [gameState.status, gameState.board]);
+  }, []);
 
   return (
     <div className="flex flex-col gap-8">
