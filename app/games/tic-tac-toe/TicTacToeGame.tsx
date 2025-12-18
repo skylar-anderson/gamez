@@ -137,7 +137,7 @@ export default function TicTacToeGame() {
         )}
         {gameState.status === "draw" && (
           <div className="text-2xl text-yellow-500 font-bold">
-            It's a draw!
+            It&apos;s a draw!
           </div>
         )}
       </div>
