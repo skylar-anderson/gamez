@@ -83,12 +83,12 @@ export default function TicTacToeGame() {
 
   // Handle cell click
   const handleCellClick = useCallback((index: number) => {
-    // Ignore clicks if game is over or cell is already filled
-    if (gameState.status !== "playing" || gameState.board[index] !== null) {
-      return;
-    }
-
     setGameState(prev => {
+      // Ignore clicks if game is over or cell is already filled
+      if (prev.status !== "playing" || prev.board[index] !== null) {
+        return prev;
+      }
+
       // Create new board with the move
       const newBoard = [...prev.board];
       newBoard[index] = prev.currentPlayer;
@@ -107,7 +107,7 @@ export default function TicTacToeGame() {
         winningLine,
       };
     });
-  }, [gameState.status, gameState.board]);
+  }, []);
 
   // Get cell style based on game state
   const getCellClassName = (index: number): string => {
