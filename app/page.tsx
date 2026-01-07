@@ -11,6 +11,11 @@ export default function Home() {
           description="A code-breaking game where you try to guess the pattern of colored pegs selected by the computer."
           href="/games/mastermind"
         />
+        <GameCard 
+          title="Tic Tac Toe" 
+          description="Classic two-player game where you compete to get three in a row on a 3x3 grid."
+          href="/games/tictactoe"
+        />
         {/* Add more game cards here as you implement them */}
       </div>
     </div>
