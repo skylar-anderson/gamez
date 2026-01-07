@@ -1,0 +1,29 @@
+{
+  "name": "Dev with Copilot CLI Agent",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:22",
+  "features": {
+    "ghcr.io/devcontainers/features/github-cli:1": {}
+  },
+  "postCreateCommand": "bash .devcontainer/setup-copilot-cli.sh",
+  "postStartCommand": "bash .devcontainer/start-copilot-server.sh",
+  "forwardPorts": [8080],
+  "portsAttributes": {
+    "8080": {
+      "label": "Copilot CLI Agent",
+      "onAutoForward": "silent",
+      "visibility": "private"
+    }
+  },
+  "remoteEnv": {
+    "COPILOT_CLI_BRANCH": "webserver-haha",
+    "COPILOT_CLI_DIR": "/home/node/.copilot-cli"
+  },
+  "customizations": {
+    "codespaces": {
+      "repositories": {
+        "github/copilot-cli": { "permissions": { "contents": "read" } },
+        "github/copilot-sdk": { "permissions": { "contents": "read", "packages": "read" } }
+      }
+    }
+  }
+}
