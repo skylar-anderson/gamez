@@ -45,6 +45,11 @@ export default function RootLayout({
                     Mastermind
                   </Link>
                 </li>
+                <li>
+                  <Link href="/games/tictactoe" className="hover:text-blue-600 transition-colors">
+                    Tic Tac Toe
+                  </Link>
+                </li>
               </ul>
             </nav>
           </div>
