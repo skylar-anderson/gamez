@@ -6,12 +6,16 @@ export default function Home() {
       <h1 className="text-3xl font-bold mb-8">Game Collection</h1>
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <GameCard 
-          title="Mastermind" 
+        <GameCard
+          title="Mastermind"
           description="A code-breaking game where you try to guess the pattern of colored pegs selected by the computer."
           href="/games/mastermind"
         />
-        {/* Add more game cards here as you implement them */}
+        <GameCard
+          title="Minesweeper"
+          description="Clear the minefield without detonating any mines. Numbers reveal how many adjacent cells hide explosives."
+          href="/games/minesweeper"
+        />
       </div>
     </div>
   );

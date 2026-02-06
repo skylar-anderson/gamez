@@ -45,6 +45,11 @@ export default function RootLayout({
                     Mastermind
                   </Link>
                 </li>
+                <li>
+                  <Link href="/games/minesweeper" className="hover:text-blue-600 transition-colors">
+                    Minesweeper
+                  </Link>
+                </li>
               </ul>
             </nav>
           </div>
