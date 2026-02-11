@@ -45,6 +45,11 @@ export default function RootLayout({
                     Mastermind
                   </Link>
                 </li>
+                <li>
+                  <Link href="/games/platformer" className="hover:text-blue-600 transition-colors">
+                    Pixel Runner
+                  </Link>
+                </li>
               </ul>
             </nav>
           </div>

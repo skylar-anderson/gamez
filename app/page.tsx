@@ -11,7 +11,11 @@ export default function Home() {
           description="A code-breaking game where you try to guess the pattern of colored pegs selected by the computer."
           href="/games/mastermind"
         />
-        {/* Add more game cards here as you implement them */}
+        <GameCard 
+          title="Pixel Runner" 
+          description="A 2D platformer — run, jump, and collect coins across 3 levels while avoiding enemies!"
+          href="/games/platformer"
+        />
       </div>
     </div>
   );
